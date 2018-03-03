@@ -8,20 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		0825D7E2204AB4AD00C261C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D7E1204AB4AD00C261C4 /* AppDelegate.swift */; };
-		0825D7E4204AB4AD00C261C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D7E3204AB4AD00C261C4 /* ViewController.swift */; };
 		0825D7E7204AB4AD00C261C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0825D7E5204AB4AD00C261C4 /* Main.storyboard */; };
 		0825D7E9204AB4AD00C261C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0825D7E8204AB4AD00C261C4 /* Assets.xcassets */; };
 		0825D7EC204AB4AD00C261C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0825D7EA204AB4AD00C261C4 /* LaunchScreen.storyboard */; };
+		0825D7F4204AB4F300C261C4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D7F3204AB4F300C261C4 /* MainViewController.swift */; };
+		0825D7F6204AB57A00C261C4 /* FaceRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D7F5204AB57A00C261C4 /* FaceRecognizer.swift */; };
+		0825D7F9204AB59200C261C4 /* Vision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0825D7F8204AB59200C261C4 /* Vision.framework */; };
+		0825D7FB204AB59800C261C4 /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0825D7FA204AB59800C261C4 /* CoreML.framework */; };
+		0825D806204ABA5600C261C4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0825D805204ABA5600C261C4 /* AVFoundation.framework */; };
+		0825D808204AC04700C261C4 /* RecognizedFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D807204AC04700C261C4 /* RecognizedFace.swift */; };
+		0825D80D204B133200C261C4 /* EmotionRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D80C204B133200C261C4 /* EmotionRecognizer.swift */; };
+		0825D80F204B141300C261C4 /* RecognizedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D80E204B141300C261C4 /* RecognizedEmotion.swift */; };
+		0825D815204B176000C261C4 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0825D814204B176000C261C4 /* CNNEmotions.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0825D7DE204AB4AD00C261C4 /* itp-mobilelab-week6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "itp-mobilelab-week6.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0825D7E1204AB4AD00C261C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0825D7E3204AB4AD00C261C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0825D7E6204AB4AD00C261C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0825D7E8204AB4AD00C261C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0825D7EB204AB4AD00C261C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0825D7ED204AB4AD00C261C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0825D7F3204AB4F300C261C4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0825D7F5204AB57A00C261C4 /* FaceRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceRecognizer.swift; sourceTree = "<group>"; };
+		0825D7F8204AB59200C261C4 /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
+		0825D7FA204AB59800C261C4 /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		0825D7FC204AB59F00C261C4 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		0825D805204ABA5600C261C4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0825D807204AC04700C261C4 /* RecognizedFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedFace.swift; sourceTree = "<group>"; };
+		0825D80C204B133200C261C4 /* EmotionRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRecognizer.swift; sourceTree = "<group>"; };
+		0825D80E204B141300C261C4 /* RecognizedEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedEmotion.swift; sourceTree = "<group>"; };
+		0825D814204B176000C261C4 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +46,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0825D806204ABA5600C261C4 /* AVFoundation.framework in Frameworks */,
+				0825D7FB204AB59800C261C4 /* CoreML.framework in Frameworks */,
+				0825D7F9204AB59200C261C4 /* Vision.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +60,7 @@
 			children = (
 				0825D7E0204AB4AD00C261C4 /* itp-mobilelab-week6 */,
 				0825D7DF204AB4AD00C261C4 /* Products */,
+				0825D7F7204AB59200C261C4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +75,54 @@
 		0825D7E0204AB4AD00C261C4 /* itp-mobilelab-week6 */ = {
 			isa = PBXGroup;
 			children = (
-				0825D7E1204AB4AD00C261C4 /* AppDelegate.swift */,
-				0825D7E3204AB4AD00C261C4 /* ViewController.swift */,
+				0825D801204AB6F300C261C4 /* Recognizers */,
+				0825D7F3204AB4F300C261C4 /* MainViewController.swift */,
 				0825D7E5204AB4AD00C261C4 /* Main.storyboard */,
+				0825D7E1204AB4AD00C261C4 /* AppDelegate.swift */,
 				0825D7E8204AB4AD00C261C4 /* Assets.xcassets */,
 				0825D7EA204AB4AD00C261C4 /* LaunchScreen.storyboard */,
 				0825D7ED204AB4AD00C261C4 /* Info.plist */,
 			);
 			path = "itp-mobilelab-week6";
+			sourceTree = "<group>";
+		};
+		0825D7F7204AB59200C261C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0825D805204ABA5600C261C4 /* AVFoundation.framework */,
+				0825D7FC204AB59F00C261C4 /* AVKit.framework */,
+				0825D7FA204AB59800C261C4 /* CoreML.framework */,
+				0825D7F8204AB59200C261C4 /* Vision.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0825D801204AB6F300C261C4 /* Recognizers */ = {
+			isa = PBXGroup;
+			children = (
+				0825D802204AB6FC00C261C4 /* Model */,
+				0825D80B204AC1FC00C261C4 /* Objects */,
+				0825D7F5204AB57A00C261C4 /* FaceRecognizer.swift */,
+				0825D80C204B133200C261C4 /* EmotionRecognizer.swift */,
+			);
+			path = Recognizers;
+			sourceTree = "<group>";
+		};
+		0825D802204AB6FC00C261C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0825D814204B176000C261C4 /* CNNEmotions.mlmodel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0825D80B204AC1FC00C261C4 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				0825D807204AC04700C261C4 /* RecognizedFace.swift */,
+				0825D80E204B141300C261C4 /* RecognizedEmotion.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +197,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0825D7E4204AB4AD00C261C4 /* ViewController.swift in Sources */,
+				0825D815204B176000C261C4 /* CNNEmotions.mlmodel in Sources */,
+				0825D7F4204AB4F300C261C4 /* MainViewController.swift in Sources */,
 				0825D7E2204AB4AD00C261C4 /* AppDelegate.swift in Sources */,
+				0825D7F6204AB57A00C261C4 /* FaceRecognizer.swift in Sources */,
+				0825D80F204B141300C261C4 /* RecognizedEmotion.swift in Sources */,
+				0825D808204AC04700C261C4 /* RecognizedFace.swift in Sources */,
+				0825D80D204B133200C261C4 /* EmotionRecognizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
