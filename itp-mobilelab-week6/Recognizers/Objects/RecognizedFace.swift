@@ -12,7 +12,7 @@ import Vision
 class RecognizedFace {
     //MARK: - Properties
     public var observation: VNFaceObservation?
-    public var frame: CGRect? {
+    public var boundingBox: CGRect? {
         return observation?.boundingBox
     }
     //image

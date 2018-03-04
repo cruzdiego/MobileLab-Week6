@@ -6,47 +6,44 @@
 //  Copyright © 2018 Diego Cruz. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Vision
 import CoreML
 
+protocol EmotionRecognizerDelegate: class {
+    func emotionRecognizerDidRecognize(emotion: RecognizedEmotion?)
+}
+
 class EmotionRecognizer {
-    
-    public var recognizedFace: RecognizedFace?
-    public var completionClosure: ((_ : RecognizedEmotion?) -> ())?
-    
-    private static let model:VNCoreMLModel? = {
-        return try? VNCoreMLModel(for: CNNEmotions().model)
-    }()
-    
-    private lazy var request:VNCoreMLRequest? = {
+    //MARK: - Properties
+    public weak var delegate: EmotionRecognizerDelegate?
+    public lazy var request:VNCoreMLRequest? = {
         guard let model = EmotionRecognizer.model else {
             return nil
         }
         
         return VNCoreMLRequest(model: model, completionHandler: {[unowned self] (request:VNCoreMLRequest, error:Error) in
             self.handleRequest(request)
-        } as? VNRequestCompletionHandler)
+            } as? VNRequestCompletionHandler)
+    }()
+    
+    private static let model:VNCoreMLModel? = {
+        return try? VNCoreMLModel(for: CNNEmotions().model)
     }()
     
     //MARK: - Methods
-    public func recognize(from image:CIImage,completion:@escaping (_ : RecognizedEmotion?)->()) {
-        guard let request = request else {
-            completion(nil)
-            return
-        }
-        
-        let requestHandler = VNImageRequestHandler(ciImage: image)
-        try? requestHandler.perform([request])
+    init(delegate:EmotionRecognizerDelegate?) {
+        self.delegate = delegate
     }
     
     private func handleRequest(_ request: VNCoreMLRequest) {
         guard   let observations = request.results as? [VNClassificationObservation],
                 let bestObservation = observations.first else {
+                    delegate?.emotionRecognizerDidRecognize(emotion: nil)
                 return
         }
         
         let emotion = RecognizedEmotion(name: bestObservation.identifier)
-        completionClosure?(emotion)
+        delegate?.emotionRecognizerDidRecognize(emotion: emotion)
     }
 }

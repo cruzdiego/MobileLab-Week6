@@ -20,6 +20,7 @@
 		0825D80D204B133200C261C4 /* EmotionRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D80C204B133200C261C4 /* EmotionRecognizer.swift */; };
 		0825D80F204B141300C261C4 /* RecognizedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D80E204B141300C261C4 /* RecognizedEmotion.swift */; };
 		0825D815204B176000C261C4 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0825D814204B176000C261C4 /* CNNEmotions.mlmodel */; };
+		0825D817204B6A6700C261C4 /* MainRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D816204B6A6700C261C4 /* MainRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		0825D80C204B133200C261C4 /* EmotionRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRecognizer.swift; sourceTree = "<group>"; };
 		0825D80E204B141300C261C4 /* RecognizedEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedEmotion.swift; sourceTree = "<group>"; };
 		0825D814204B176000C261C4 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
+		0825D816204B6A6700C261C4 /* MainRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				0825D80B204AC1FC00C261C4 /* Objects */,
 				0825D7F5204AB57A00C261C4 /* FaceRecognizer.swift */,
 				0825D80C204B133200C261C4 /* EmotionRecognizer.swift */,
+				0825D816204B6A6700C261C4 /* MainRecognizer.swift */,
 			);
 			path = Recognizers;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				0825D7F4204AB4F300C261C4 /* MainViewController.swift in Sources */,
 				0825D7E2204AB4AD00C261C4 /* AppDelegate.swift in Sources */,
 				0825D7F6204AB57A00C261C4 /* FaceRecognizer.swift in Sources */,
+				0825D817204B6A6700C261C4 /* MainRecognizer.swift in Sources */,
 				0825D80F204B141300C261C4 /* RecognizedEmotion.swift in Sources */,
 				0825D808204AC04700C261C4 /* RecognizedFace.swift in Sources */,
 				0825D80D204B133200C261C4 /* EmotionRecognizer.swift in Sources */,

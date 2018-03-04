@@ -10,11 +10,10 @@ import UIKit
 
 class RecognizedEmotion {
     //MARK: - Properties
-    public var emotionName: String
-    public var emotionEmoji: String? {
-        return Emotion(rawValue: emotionName)?.emoji
+    public var name: String
+    public var emoji: String? {
+        return Emotion(rawValue: name)?.emoji
     }
-    //frame
     
     private enum Emotion :String {
         case anger = "Anger"
@@ -47,6 +46,6 @@ class RecognizedEmotion {
     
     //MARK: - Methods
     init(name:String) {
-        self.emotionName = name
+        self.name = name
     }
 }
