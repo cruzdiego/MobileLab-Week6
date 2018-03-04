@@ -12,13 +12,22 @@ import Vision
 class RecognizedFace {
     //MARK: - Properties
     public var observation: VNFaceObservation?
-    public var boundingBox: CGRect? {
-        return observation?.boundingBox
+    public var boundingBox: CGRect {
+        return observation?.boundingBox ?? CGRect.zero
     }
-    //image
     
     //MARK: - Methods
     init(observation: VNFaceObservation) {
         self.observation = observation
+    }
+    
+    public func frame(from parentView: UIView) -> CGRect {
+        let parentFrame = parentView.frame
+        let width = parentFrame.width * boundingBox.width
+        let height = parentFrame.height * boundingBox.height
+        let x = parentFrame.minX * boundingBox.minX
+        let y = parentFrame.minY * boundingBox.minY - height
+        
+        return CGRect(x: x, y: y, width: width, height: height)
     }
 }
