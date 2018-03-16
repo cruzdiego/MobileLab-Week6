@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import AVFoundation
 import Vision
 
@@ -41,11 +42,12 @@ class MainRecognizer {
     
     public func recognize(from buffer:CMSampleBuffer) {
         DispatchQueue.global(qos: .userInteractive).async {
-            guard let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) else {
+            guard   let pixelBuffer = CMSampleBufferGetImageBuffer(buffer),
+                    let emotionRequest = self.emotionRecognizer.request else {
                 return
             }
-            
-            try? self.requestHandler.perform(self.requests, on: pixelBuffer)
+                        
+            try? self.requestHandler.perform([emotionRequest], on: pixelBuffer)
         }
     }
 }

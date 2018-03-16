@@ -19,8 +19,8 @@
 		0825D808204AC04700C261C4 /* RecognizedFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D807204AC04700C261C4 /* RecognizedFace.swift */; };
 		0825D80D204B133200C261C4 /* EmotionRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D80C204B133200C261C4 /* EmotionRecognizer.swift */; };
 		0825D80F204B141300C261C4 /* RecognizedEmotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D80E204B141300C261C4 /* RecognizedEmotion.swift */; };
-		0825D815204B176000C261C4 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0825D814204B176000C261C4 /* CNNEmotions.mlmodel */; };
 		0825D817204B6A6700C261C4 /* MainRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0825D816204B6A6700C261C4 /* MainRecognizer.swift */; };
+		08466B5020540A5900725042 /* CNNEmotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 08466B4E205408F500725042 /* CNNEmotions.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +39,8 @@
 		0825D807204AC04700C261C4 /* RecognizedFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedFace.swift; sourceTree = "<group>"; };
 		0825D80C204B133200C261C4 /* EmotionRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionRecognizer.swift; sourceTree = "<group>"; };
 		0825D80E204B141300C261C4 /* RecognizedEmotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedEmotion.swift; sourceTree = "<group>"; };
-		0825D814204B176000C261C4 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 		0825D816204B6A6700C261C4 /* MainRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRecognizer.swift; sourceTree = "<group>"; };
+		08466B4E205408F500725042 /* CNNEmotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CNNEmotions.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 		0825D802204AB6FC00C261C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0825D814204B176000C261C4 /* CNNEmotions.mlmodel */,
+				08466B4E205408F500725042 /* CNNEmotions.mlmodel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0825D815204B176000C261C4 /* CNNEmotions.mlmodel in Sources */,
+				08466B5020540A5900725042 /* CNNEmotions.mlmodel in Sources */,
 				0825D7F4204AB4F300C261C4 /* MainViewController.swift in Sources */,
 				0825D7E2204AB4AD00C261C4 /* AppDelegate.swift in Sources */,
 				0825D7F6204AB57A00C261C4 /* FaceRecognizer.swift in Sources */,

@@ -17,16 +17,15 @@ protocol EmotionRecognizerDelegate: class {
 class EmotionRecognizer {
     //MARK: - Properties
     public weak var delegate: EmotionRecognizerDelegate?
-    public lazy var request:VNCoreMLRequest? = {
+    public lazy var request:VNCoreMLRequest? = {        
         guard let model = EmotionRecognizer.model else {
             return nil
         }
         
-        return VNCoreMLRequest(model: model, completionHandler: {[unowned self] (request:VNCoreMLRequest, error:Error) in
-            self.handleRequest(request)
-            } as? VNRequestCompletionHandler)
+        let coreRequest = VNCoreMLRequest(model: model, completionHandler:self.handleRequest)
+        coreRequest.imageCropAndScaleOption = .centerCrop
+        return coreRequest
     }()
-    
     private static let model:VNCoreMLModel? = {
         return try? VNCoreMLModel(for: CNNEmotions().model)
     }()
@@ -36,7 +35,7 @@ class EmotionRecognizer {
         self.delegate = delegate
     }
     
-    private func handleRequest(_ request: VNCoreMLRequest) {
+    private func handleRequest(request: VNRequest,error: Error?) {
         guard   let observations = request.results as? [VNClassificationObservation],
                 let bestObservation = observations.first else {
                     delegate?.emotionRecognizerDidRecognize(emotion: nil)

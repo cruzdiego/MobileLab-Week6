@@ -16,14 +16,7 @@ protocol FaceRecognizerDelegate:class {
 class FaceRecognizer {
     //MARK: - Properties
     public weak var delegate: FaceRecognizerDelegate?
-    public lazy var request: VNDetectFaceRectanglesRequest = {
-        let request = VNDetectFaceRectanglesRequest(completionHandler: {[unowned self] (request, error) in
-            self.handleFacesRequest(request)
-            } as! VNRequestCompletionHandler)
-        request.maximumObservations = 1
-        request.minimumSize = 0.6
-        return request
-    }()
+    public lazy var request: VNDetectFaceRectanglesRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFacesRequest)
     
     //MARK: - Methods
     init(delegate:FaceRecognizerDelegate?) {
@@ -31,13 +24,15 @@ class FaceRecognizer {
     }
     
     //MARK: Handlers
-    private func handleFacesRequest(_ request: VNDetectFaceRectanglesRequest) {
+    private func handleFacesRequest(request: VNRequest,error: Error?) {
         guard   let observations = request.results as? [VNFaceObservation],
-                let observation = observation.first else {
+                let observation = observations.first else {
+                print("Detecting \(request.results?.count ?? 0) faces")
                 delegate?.faceRecognizerDidRecognize(face: nil)
                 return
         }
         
+        print("Face detected at: \(observation.boundingBox.minX),\(observation.boundingBox.minY)")
         let face = RecognizedFace(observation: observation)
         delegate?.faceRecognizerDidRecognize(face: face)
     }
