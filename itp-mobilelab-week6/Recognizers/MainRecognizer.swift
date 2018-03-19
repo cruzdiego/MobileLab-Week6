@@ -42,12 +42,11 @@ class MainRecognizer {
     
     public func recognize(from buffer:CMSampleBuffer) {
         DispatchQueue.global(qos: .userInteractive).async {
-            guard   let pixelBuffer = CMSampleBufferGetImageBuffer(buffer),
-                    let emotionRequest = self.emotionRecognizer.request else {
+            guard let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) else {
                 return
             }
                         
-            try? self.requestHandler.perform([emotionRequest], on: pixelBuffer)
+            try? self.requestHandler.perform(self.requests, on: pixelBuffer)
         }
     }
 }

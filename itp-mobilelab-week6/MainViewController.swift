@@ -117,10 +117,14 @@ extension MainViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //MARK: MainRecognizerDelegate
 extension MainViewController: MainRecognizerDelegate {
     func mainRecognizerDidRecognize(face: RecognizedFace?) {
-        lastFace = face
+        DispatchQueue.main.async {
+            self.lastFace = face
+        }
     }
     
     func mainRecognizerDidRecognize(emotion: RecognizedEmotion?) {
-        lastEmotion = emotion
+        DispatchQueue.main.async {
+            self.lastEmotion = emotion
+        }
     }
 }

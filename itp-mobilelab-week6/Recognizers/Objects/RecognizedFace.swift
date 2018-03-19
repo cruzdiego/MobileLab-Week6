@@ -25,8 +25,8 @@ class RecognizedFace {
         let parentFrame = parentView.frame
         let width = parentFrame.width * boundingBox.width
         let height = parentFrame.height * boundingBox.height
-        let x = parentFrame.minX * boundingBox.minX
-        let y = parentFrame.minY * boundingBox.minY //- height
+        let x = parentFrame.width - width - parentFrame.width * boundingBox.minX
+        let y = parentFrame.height - height - parentFrame.height * boundingBox.minY
         
         return CGRect(x: x, y: y, width: width, height: height)
     }
