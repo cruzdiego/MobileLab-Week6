@@ -14,8 +14,25 @@ class MainViewController: UIViewController {
     
     //MARK: - Properties
     public lazy var mainRecognizer: MainRecognizer? = MainRecognizer(delegate: self)
-    @IBOutlet weak var overlayView: UIView!
-    @IBOutlet weak var overlayLabel: UILabel!
+    @IBOutlet weak var cameraView: UIView?
+    @IBOutlet weak var overlayView: UIView?
+    @IBOutlet weak var overlayLabel: UILabel?
+    @IBOutlet weak var overlayViewTopConstraint: NSLayoutConstraint?
+    @IBOutlet weak var overlayViewLeftConstraint: NSLayoutConstraint?
+    @IBOutlet weak var overlayViewWidthConstraint: NSLayoutConstraint?
+    @IBOutlet weak var overlayViewHeightConstraint: NSLayoutConstraint?
+    
+    fileprivate var lastFace: RecognizedFace? {
+        didSet {
+            didSetLastFace()
+        }
+    }
+    
+    fileprivate var lastEmotion: RecognizedEmotion? {
+        didSet {
+            didSetLastEmotion()
+        }
+    }
     
     private lazy var cameraLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
     private lazy var captureSession: AVCaptureSession = {
@@ -47,14 +64,44 @@ class MainViewController: UIViewController {
         cameraLayer.frame = view.bounds
     }
     
+    
+    
     //MARK: Private
     private func configure() {
         func configureCaptureSession() {
-            view.layer.addSublayer(cameraLayer)
+            cameraView?.layer.addSublayer(cameraLayer)
             captureSession.startRunning()
         }
         
         configureCaptureSession()
+    }
+    
+    //MARK: didSet
+    private func didSetLastFace() {
+        refreshOverlayView()
+    }
+    
+    private func didSetLastEmotion() {
+        refreshOverlayLabel()
+    }
+    
+    //MARK: UI
+    private func refreshOverlayView() {
+        guard let faceFrame = lastFace?.frame(from: self.view) else {
+            overlayView?.isHidden = true
+            return
+        }
+        
+        overlayView?.isHidden = false
+        overlayViewTopConstraint?.constant = faceFrame.minY
+        overlayViewLeftConstraint?.constant = faceFrame.minX
+        overlayViewWidthConstraint?.constant = faceFrame.width
+        overlayViewHeightConstraint?.constant = faceFrame.height
+        overlayLabel?.font = UIFont.systemFont(ofSize: faceFrame.height)
+    }
+    
+    private func refreshOverlayLabel() {
+        overlayLabel?.text = lastEmotion?.emoji
     }
 }
 
@@ -70,20 +117,10 @@ extension MainViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //MARK: MainRecognizerDelegate
 extension MainViewController: MainRecognizerDelegate {
     func mainRecognizerDidRecognize(face: RecognizedFace?) {
-        guard let faceFrame = face?.frame(from: self.view) else {
-            overlayView.frame = CGRect.zero
-            return
-        }
-        
-        overlayView.frame = faceFrame
+        lastFace = face
     }
     
     func mainRecognizerDidRecognize(emotion: RecognizedEmotion?) {
-        guard let emotionEmoji = emotion?.emoji else {
-            overlayLabel.text = ""
-            return
-        }
-        
-        overlayLabel.text = emotionEmoji
+        lastEmotion = emotion
     }
 }

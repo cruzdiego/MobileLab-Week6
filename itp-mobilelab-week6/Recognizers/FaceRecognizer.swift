@@ -27,12 +27,10 @@ class FaceRecognizer {
     private func handleFacesRequest(request: VNRequest,error: Error?) {
         guard   let observations = request.results as? [VNFaceObservation],
                 let observation = observations.first else {
-                print("Detecting \(request.results?.count ?? 0) faces")
                 delegate?.faceRecognizerDidRecognize(face: nil)
                 return
         }
         
-        print("Face detected at: \(observation.boundingBox.minX),\(observation.boundingBox.minY)")
         let face = RecognizedFace(observation: observation)
         delegate?.faceRecognizerDidRecognize(face: face)
     }
