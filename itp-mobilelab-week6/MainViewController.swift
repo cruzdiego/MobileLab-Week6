@@ -14,8 +14,21 @@ class MainViewController: UIViewController {
     
     //MARK: - Properties
     public lazy var mainRecognizer: MainRecognizer? = MainRecognizer(delegate: self)
-    @IBOutlet weak var overlayView: UIView!
-    @IBOutlet weak var overlayLabel: UILabel!
+    @IBOutlet weak var cameraView: UIView?
+    @IBOutlet weak var addEmotionButton: UIButton?
+    @IBOutlet weak var clearEmotionsButton: UIButton?
+    @IBOutlet weak var emotionsLabel: UILabel?
+    
+    fileprivate var lastEmotion: RecognizedEmotion? {
+        didSet {
+            didSetLastEmotion()
+        }
+    }
+    fileprivate var emotions = [RecognizedEmotion]() {
+        didSet {
+            didSetEmotions()
+        }
+    }
     
     private lazy var cameraLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
     private lazy var captureSession: AVCaptureSession = {
@@ -47,14 +60,70 @@ class MainViewController: UIViewController {
         cameraLayer.frame = view.bounds
     }
     
+    @IBAction func addEmotionPressed(sender: UIButton) {
+        guard let lastEmotion = lastEmotion else {
+            return
+        }
+        
+        emotions.append(lastEmotion)
+    }
+    
+    @IBAction func clearEmotionsPressed(sender: UIButton) {
+        emotions.removeAll()
+    }
+    
     //MARK: Private
     private func configure() {
         func configureCaptureSession() {
-            view.layer.addSublayer(cameraLayer)
+            cameraView?.layer.addSublayer(cameraLayer)
             captureSession.startRunning()
         }
         
+        func configureAddEmotionButton() {
+            let layer = addEmotionButton?.layer
+            layer?.shadowOpacity = 0.7
+            layer?.shadowRadius = 8.0
+            layer?.shadowOffset = CGSize(width: 1, height: 1)
+        }
+        
         configureCaptureSession()
+        configureAddEmotionButton()
+    }
+    
+    //MARK: didSet
+    private func didSetLastEmotion() {
+        refreshEmotionButton()
+    }
+    
+    private func didSetEmotions() {
+        refreshEmotionsLabel()
+        refreshClearEmotionsButton()
+        lastEmotion = nil
+    }
+    
+    //MARK: UI
+    private func refreshEmotionButton() {
+        addEmotionButton?.isHidden = lastEmotion == nil
+        addEmotionButton?.setTitle(lastEmotion?.emoji, for: .normal)
+    }
+    
+    private func refreshEmotionsLabel() {
+        var emotionString = ""
+        for (index,emotion) in emotions.enumerated() {
+            guard let emoji = emotion.emoji else {
+                continue
+            }
+            
+            if index > 0 {
+                emotionString += "+"
+            }
+            emotionString += emoji
+        }
+        emotionsLabel?.text = emotionString
+    }
+    
+    private func refreshClearEmotionsButton() {
+        clearEmotionsButton?.isHidden = emotions.count == 0
     }
 }
 
@@ -70,20 +139,11 @@ extension MainViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 //MARK: MainRecognizerDelegate
 extension MainViewController: MainRecognizerDelegate {
     func mainRecognizerDidRecognize(face: RecognizedFace?) {
-        guard let faceFrame = face?.frame(from: self.view) else {
-            overlayView.frame = CGRect.zero
-            return
-        }
-        
-        overlayView.frame = faceFrame
+
     }
     
     func mainRecognizerDidRecognize(emotion: RecognizedEmotion?) {
-        guard let emotionEmoji = emotion?.emoji else {
-            overlayLabel.text = ""
-            return
-        }
-        
-        overlayLabel.text = emotionEmoji
+        print(emotion?.name ?? "-")
+        lastEmotion = emotion
     }
 }

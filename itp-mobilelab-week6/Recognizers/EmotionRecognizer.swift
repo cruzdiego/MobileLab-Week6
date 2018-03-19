@@ -37,7 +37,9 @@ class EmotionRecognizer {
     
     private func handleRequest(request: VNRequest,error: Error?) {
         guard   let observations = request.results as? [VNClassificationObservation],
-                let bestObservation = observations.first else {
+            let bestObservation = observations.max(by: { (observation1, observation2) -> Bool in
+                observation1.confidence > observation2.confidence
+            }) else {
                     delegate?.emotionRecognizerDidRecognize(emotion: nil)
                 return
         }
